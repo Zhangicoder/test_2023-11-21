@@ -1,56 +1,32 @@
-//用函数指针数组改进计算器代码
+//最基础的冒泡排序的写法
+//冒泡排序的核心思想是一个数组中相邻两个元素的交换
+//以下代码写的是升序排法
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
-void menu()
+void bubble_sort(int arr[], int sz)
 {
-	printf("************************\n");
-	printf("*** 1.add  2.sub   *****\n");
-	printf("*** 3.mul  4.div   *****\n");
-	printf("*** 0.exit  ************\n");
-	printf("************************\n");
+	int i, j;
+	for (i = 0; i < sz-1; i++)
+	{
+		for (j = 0; j < sz - 1 - i; j++)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+		}
+	}
 }
-int add(int x, int y)
-{
-	return x + y;
-}
-int sub(int x, int y)
-{
-	return x - y;
-}
-int mul(int x, int y)
-{
-	return x * y;
-}
-int div(int x, int y)
-{
-	return x / y;
-}
-
 int main()
 {
-	int input;
-	int x, y, ret;
-	do
+	int arr[10] = { 9,8,7,6,5,4,3,2,1,0};
+	int sz = sizeof(arr) /sizeof( arr[0]);
+	bubble_sort(arr, sz);
+	for (int i = 0; i < sz; i++)
 	{
-		menu();
-		printf("请选择>");
-		scanf("%d", &input);
-		int (*pfarr[5])(int, int) = { 0,add,sub,mul,div };
-		if (input == 0)
-		{
-			printf("退出计算器\n");
-		}
-		else if (input >= 1&&input<=4)
-		{
-			printf("请输入两个操作数>");
-			scanf("%d %d", &x, &y);
-			ret = pfarr[input](x, y);
-			printf("%d\n",ret);
-		}
-		else
-		{
-			printf("选择错误\n");
-		}
-		
-	} while (input);
+		printf("%d ", arr[i]);
+	}
+	return 0;
 }
