@@ -6,6 +6,7 @@ void left_rotate(char arr[], int k)
 {
 	int i = 0;
 	int j = 0;
+	k%=len;
 	int len = strlen(arr);
 	for (i = 0; i < k; i++)
 	{
