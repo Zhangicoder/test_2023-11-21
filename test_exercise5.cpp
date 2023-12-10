@@ -18,6 +18,7 @@ void reverse(char* left, char* right)
 void left_rotate(char arr[], int k)
 {
 	int len = strlen(arr);
+	k%=len;
 	//逆序左边
 	reverse(arr, arr + k - 1);
 	//逆序右边
